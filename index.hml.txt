@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이온결합 vs 공유결합 퀴즈</title>
+
+<style>
+
+body{
+    font-family:'Pretendard', sans-serif;
+    background:#eef4ff;
+    text-align:center;
+    padding:30px;
+}
+
+h1{
+    color:#1e40af;
+}
+
+.quiz-box{
+    background:white;
+    max-width:650px;
+    margin:auto;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+img{
+    width:300px;
+    height:300px;
+    object-fit:contain;
+    margin:20px 0;
+}
+
+.info{
+    display:flex;
+    justify-content:space-around;
+    margin:15px 0;
+    font-size:20px;
+    font-weight:bold;
+}
+
+button{
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.ionic{
+    background:#2563eb;
+    color:white;
+}
+
+.covalent{
+    background:#10b981;
+    color:white;
+}
+
+#result{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+#explanation{
+    margin-top:12px;
+    color:#444;
+    line-height:1.6;
+    font-size:18px;
+}
+
+.timer{
+    color:red;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>이온결합 vs 공유결합 퀴즈</h1>
+
+<div class="quiz-box">
+
+    <div class="info">
+        <div>점수: <span id="score">0</span></div>
+        <div class="timer">남은 시간: <span id="time">10</span>초</div>
+    </div>
+
+    <h2 id="questionTitle">문제 1</h2>
+
+    <img id="bondImage" src="" alt="결합 이미지">
+
+    <div>
+        <button class="ionic" onclick="checkAnswer('이온결합')">
+            이온결합
+        </button>
+
+        <button class="covalent" onclick="checkAnswer('공유결합')">
+            공유결합
+        </button>
+    </div>
+
+    <div id="result"></div>
+    <div id="explanation"></div>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{
+    image:"https://upload.wikimedia.org/wikipedia/commons/6/6f/Sodium-chloride-3D-ionic.png",
+    answer:"이온결합",
+    explanation:"Na와 Cl은 전자를 주고받아 결합하므로 이온결합입니다."
+},
+
+{
+    image:"https://upload.wikimedia.org/wikipedia/commons/e/e4/Water_molecule_3D.svg",
+    answer:"공유결합",
+    explanation:"물(H₂O)은 전자를 함께 공유하므로 공유결합입니다."
+},
+
+{
+    image:"https://upload.wikimedia.org/wikipedia/commons/3/33/Methane-3D-balls.png",
+    answer:"공유결합",
+    explanation:"메테인(CH₄)은 전자를 공유하는 공유결합입니다."
+},
+
+{
+    image:"https://upload.wikimedia.org/wikipedia/commons/0/02/Lithium-fluoride-3D-vdW.png",
+    answer:"이온결합",
+    explanation:"리튬과 플루오린은 전자를 주고받는 이온결합입니다."
+}
+
+];
+
+let currentQuiz = 0;
+let score = 0;
+
+let timeLeft = 10;
+let timer;
+
+function loadQuiz(){
+
+    clearInterval(timer);
+
+    timeLeft = 10;
+
+    document.getElementById("time").innerText = timeLeft;
+
+    document.getElementById("bondImage").src =
+        quizData[currentQuiz].image;
+
+    document.getElementById("questionTitle").innerText =
+        `문제 ${currentQuiz + 1}`;
+
+    document.getElementById("result").innerText = "";
+    document.getElementById("explanation").innerText = "";
+
+    timer = setInterval(() => {
+
+        timeLeft--;
+
+        document.getElementById("time").innerText = timeLeft;
+
+        if(timeLeft <= 0){
+
+            clearInterval(timer);
+
+            document.getElementById("result").innerHTML =
+                "⏰ 시간 초과!";
+
+            document.getElementById("explanation").innerHTML =
+                quizData[currentQuiz].explanation;
+
+            setTimeout(nextQuiz, 2500);
+        }
+
+    }, 1000);
+}
+
+function checkAnswer(userAnswer){
+
+    clearInterval(timer);
+
+    const correctAnswer = quizData[currentQuiz].answer;
+
+    if(userAnswer === correctAnswer){
+
+        score += 10;
+
+        document.getElementById("score").innerText = score;
+
+        document.getElementById("result").innerHTML =
+            "✅ 정답입니다! (+10점)";
+
+    }else{
+
+        document.getElementById("result").innerHTML =
+            "❌ 틀렸습니다!";
+    }
+
+    document.getElementById("explanation").innerHTML =
+        quizData[currentQuiz].explanation;
+
+    setTimeout(nextQuiz, 2500);
+}
+
+function nextQuiz(){
+
+    currentQuiz++;
+
+    if(currentQuiz < quizData.length){
+
+        loadQuiz();
+
+    }else{
+
+        endGame();
+    }
+}
+
+function endGame(){
+
+    document.querySelector(".quiz-box").innerHTML = `
+
+        <h2>🎉 퀴즈 종료!</h2>
+
+        <h3>최종 점수: ${score}점</h3>
+
+        <p>
+        ${score >= 30 ? "훌륭합니다!" : "조금 더 공부해봅시다!"}
+        </p>
+
+        <button onclick="restartGame()">
+            다시하기
+        </button>
+    `;
+}
+
+function restartGame(){
+
+    currentQuiz = 0;
+    score = 0;
+
+    document.querySelector(".quiz-box").innerHTML = `
+
+        <div class="info">
+            <div>점수: <span id="score">0</span></div>
+            <div class="timer">
+                남은 시간: <span id="time">10</span>초
+            </div>
+        </div>
+
+        <h2 id="questionTitle"></h2>
+
+        <img id="bondImage" src="" alt="결합 이미지">
+
+        <div>
+            <button class="ionic"
+                onclick="checkAnswer('이온결합')">
+                이온결합
+            </button>
+
+            <button class="covalent"
+                onclick="checkAnswer('공유결합')">
+                공유결합
+            </button>
+        </div>
+
+        <div id="result"></div>
+        <div id="explanation"></div>
+    `;
+
+    loadQuiz();
+}
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>
