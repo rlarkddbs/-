@@ -1,66 +1,68 @@
 <script>
 
-const quizData = [
+}const quizData = [
 
 {
-    image:"images/ionic1.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='80' cy='100' r='40' fill='blue'/><circle cx='220' cy='100' r='40' fill='green'/><text x='40' y='105' font-size='20' fill='white'>Na</text><text x='190' y='105' font-size='20' fill='white'>Cl</text><text x='120' y='40' font-size='18'>이온결합</text></svg>",
     answer:"이온결합",
     explanation:"Na와 Cl은 전자를 주고받아 결합하므로 이온결합입니다."
 },
 
 {
-    image:"images/covalent1.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='80' cy='100' r='35' fill='skyblue'/><circle cx='150' cy='100' r='35' fill='skyblue'/><circle cx='220' cy='100' r='35' fill='skyblue'/><text x='60' y='105' font-size='18'>H</text><text x='130' y='105' font-size='18'>O</text><text x='200' y='105' font-size='18'>H</text><text x='95' y='40' font-size='16'>공유결합 (H₂O)</text></svg>",
     answer:"공유결합",
     explanation:"물(H₂O)은 전자를 함께 공유하므로 공유결합입니다."
 },
 
 {
-    image:"images/covalent2.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='150' cy='100' r='40' fill='gray'/><text x='140' y='105' font-size='18' fill='white'>C</text><text x='100' y='60' font-size='14'>CH₄ 공유결합</text><circle cx='80' cy='60' r='25' fill='lightblue'/><circle cx='220' cy='60' r='25' fill='lightblue'/><circle cx='80' cy='140' r='25' fill='lightblue'/><circle cx='220' cy='140' r='25' fill='lightblue'/></svg>",
     answer:"공유결합",
-    explanation:"메테인(CH₄)은 전자를 공유하는 공유결합입니다."
+    explanation:"메테인(CH₄)은 탄소와 수소가 전자를 공유하는 공유결합입니다."
 },
 
 {
-    image:"images/ionic2.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='100' cy='100' r='40' fill='orange'/><circle cx='200' cy='100' r='40' fill='green'/><text x='85' y='105' font-size='18'>Li</text><text x='185' y='105' font-size='18'>F</text><text x='70' y='40' font-size='16'>이온결합</text></svg>",
     answer:"이온결합",
     explanation:"리튬과 플루오린은 전자를 주고받는 이온결합입니다."
 },
 
 {
-    image:"images/ionic3.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='150' cy='100' r='40' fill='blue'/><circle cx='220' cy='100' r='40' fill='red'/><text x='140' y='105' font-size='18' fill='white'>Mg</text><text x='205' y='105' font-size='18' fill='white'>O</text><text x='80' y='40' font-size='16'>MgO 이온결합</text></svg>",
     answer:"이온결합",
     explanation:"MgO는 마그네슘과 산소가 전자를 주고받는 이온결합입니다."
 },
 
 {
-    image:"images/covalent3.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='120' cy='100' r='35' fill='black'/><circle cx='180' cy='100' r='35' fill='red'/><text x='110' y='105' font-size='18' fill='white'>C</text><text x='170' y='105' font-size='18' fill='white'>O</text><text x='80' y='40' font-size='16'>CO₂ 공유결합</text></svg>",
     answer:"공유결합",
     explanation:"CO₂는 탄소와 산소가 전자를 공유하는 공유결합입니다."
 },
 
 {
-    image:"images/ionic4.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='100' cy='100' r='40' fill='purple'/><circle cx='200' cy='100' r='40' fill='green'/><text x='85' y='105' font-size='18' fill='white'>K</text><text x='185' y='105' font-size='18' fill='white'>Br</text><text x='70' y='40' font-size='16'>이온결합</text></svg>",
     answer:"이온결합",
     explanation:"KBr은 칼륨과 브로민이 전자를 주고받아 결합합니다."
 },
 
 {
-    image:"images/covalent4.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='120' cy='100' r='35' fill='blue'/><circle cx='180' cy='100' r='35' fill='blue'/><text x='110' y='105' font-size='18' fill='white'>N</text><text x='170' y='105' font-size='18' fill='white'>H</text><text x='80' y='40' font-size='16'>NH₃ 공유결합</text></svg>",
     answer:"공유결합",
     explanation:"NH₃는 질소와 수소가 전자를 공유하는 공유결합입니다."
 },
 
 {
-    image:"images/ionic5.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='120' cy='100' r='40' fill='blue'/><circle cx='200' cy='100' r='40' fill='green'/><text x='110' y='105' font-size='18' fill='white'>Ca</text><text x='185' y='105' font-size='18' fill='white'>Cl</text><text x='70' y='40' font-size='16'>CaCl₂ 이온결합</text></svg>",
     answer:"이온결합",
     explanation:"CaCl₂는 칼슘과 염소 사이의 이온결합입니다."
 },
 
 {
-    image:"images/covalent5.png",
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><circle cx='120' cy='100' r='35' fill='red'/><circle cx='180' cy='100' r='35' fill='red'/><text x='110' y='105' font-size='18' fill='white'>O</text><text x='170' y='105' font-size='18' fill='white'>O</text><text x='80' y='40' font-size='16'>O₂ 공유결합</text></svg>",
     answer:"공유결합",
     explanation:"O₂는 산소 원자끼리 전자를 공유하는 공유결합입니다."
 }
+
+];
 
 ];
 
