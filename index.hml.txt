@@ -149,7 +149,7 @@ const quizData = [
 let currentQuiz = 0;
 let score = 0;
 
-let timeLeft = 10;
+let timeLeft = 90;
 let timer;
 
 function loadQuiz(){
